@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Fruteria RP</string>
+    <string name="add_fruta">Agregar una fruta</string>
+    <string name="nombre_fruta">Ingrese fruta</string>
+    <string name="guardar">Guardar</string>
+    <string name="no_guardado">No se guardó la fruta</string>
+</resources>
