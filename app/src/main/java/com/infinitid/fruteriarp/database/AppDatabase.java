@@ -12,7 +12,7 @@ import com.infinitid.fruteriarp.entities.Fruta;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Fruta.class}, version = 2)
+@Database(entities = {Fruta.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract FrutaDao frutaDao();
 

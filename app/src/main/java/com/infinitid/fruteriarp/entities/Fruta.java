@@ -1,15 +1,18 @@
 package com.infinitid.fruteriarp.entities;
 
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity (indices = {@Index(value = {"nombre"}, unique = true)})
 public class Fruta {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String nombre;
+
+    private String descripcion;
 
     public int getId() {
         return id;
@@ -25,5 +28,22 @@ public class Fruta {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Fruta() {
+    }
+
+    public Fruta(int id, String nombre, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 }

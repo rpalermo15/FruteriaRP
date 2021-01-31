@@ -2,6 +2,9 @@
     <string name="app_name">Fruteria RP</string>
     <string name="add_fruta">Agregar una fruta</string>
     <string name="nombre_fruta">Ingrese fruta</string>
+    <string name="descripcion_fruta">Ingrese descripción</string>
     <string name="guardar">Guardar</string>
     <string name="no_guardado">No se guardó la fruta</string>
+    <string name="borrado">Se ha borrado la fruta</string>
+    <string name="no_actualizado">No se pudo actualizar la fruta</string>
 </resources>

@@ -30,4 +30,16 @@ public class FrutaRepository {
             frutaDao.insert(fruta);
         });
     }
+
+    public void update(Fruta fruta){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            frutaDao.update(fruta);
+        });
+    }
+
+    public void delete(Fruta fruta) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            frutaDao.delete(fruta);
+        });
+    }
 }
