@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:contentDescription="@string/add_fruta"
-        android:src="@drawable/ic_baseline_add_24"/>
+        android:src="@drawable/ic_baseline_add_24"
+        android:backgroundTint="@color/colorverde"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

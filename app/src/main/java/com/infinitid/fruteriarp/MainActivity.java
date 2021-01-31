@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FrutaViewModel frutaViewModel;
     private static final int NEW_FRUTA_REQ_CODE = 1;
+    private static final int UPDATE_FRUTA_REQ_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,23 @@ public class MainActivity extends AppCompatActivity {
 
             startActivityForResult(intent,NEW_FRUTA_REQ_CODE);
         });
+
+        adapter.setOnItemClickListener(new FrutaListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemDelete(Fruta fruta) {
+                frutaViewModel.delete(fruta);
+                Toast.makeText(getApplicationContext(), R.string.borrado, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onItemClick(Fruta fruta) {
+                Intent intent = new Intent(MainActivity.this, AgregarFrutaActivity.class);
+                intent.putExtra(AgregarFrutaActivity.EXTRA_MSG_ID, fruta.getId());
+                intent.putExtra(AgregarFrutaActivity.EXTRA_MSG_NOMBRE, fruta.getNombre());
+                intent.putExtra(AgregarFrutaActivity.EXTRA_MSG_DESCRIPCION, fruta.getDescripcion());
+                startActivityForResult( intent, UPDATE_FRUTA_REQ_CODE);
+            }
+        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -47,9 +65,21 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == NEW_FRUTA_REQ_CODE && resultCode == RESULT_OK){
             Fruta fruta = new Fruta();
-            fruta.setNombre(data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG));
+            fruta.setNombre(data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG_NOMBRE));
+            fruta.setDescripcion(data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG_DESCRIPCION));
             frutaViewModel.insert(fruta);
-        } else {
+        } else if (requestCode == UPDATE_FRUTA_REQ_CODE && resultCode == RESULT_OK) {
+          int id = data.getIntExtra(AgregarFrutaActivity.EXTRA_MSG_ID, -1);
+            if (id == -1){
+                Toast.makeText(getApplicationContext(), R.string.no_guardado, Toast.LENGTH_LONG).show();
+            }
+            String nombre = data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG_NOMBRE);
+            String descripcion = data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG_DESCRIPCION);
+
+            Fruta fruta = new Fruta(id, nombre, descripcion);
+            frutaViewModel.update(fruta);
+        }
+        else {
             Toast.makeText(getApplicationContext(), R.string.no_guardado, Toast.LENGTH_LONG).show();
         }
     }

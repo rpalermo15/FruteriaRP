@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="btnLabel">#FFFFFFFF</color>
     <color name="btnBackground">#FF000000</color>
+    <color name="colorverde">#3DDC84</color>
 </resources>

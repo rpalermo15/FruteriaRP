@@ -12,12 +12,19 @@
         android:fontFamily="sans-serif"
         android:textSize="18sp"/>
 
+    <EditText
+        android:id="@+id/editIngresarDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/descripcion_fruta"
+        android:fontFamily="sans-serif"
+        android:textSize="18sp"/>
+
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/btnBackground"
-        android:textColor="@color/btnLabel"
+        android:backgroundTint="@color/colorverde"
         android:text="@string/guardar"/>
 
 </LinearLayout>
