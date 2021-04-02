@@ -9,14 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.infinitid.fruteriarp.domain.FrutaDto;
 import com.infinitid.fruteriarp.entities.Fruta;
 
 import java.util.List;
 
-public class FrutaListAdapter extends ListAdapter<Fruta, FrutaViewHolder> {
+public class FrutaListAdapter extends ListAdapter<FrutaDto, FrutaViewHolder> {
 
     private OnItemClickListener listener;
-    public FrutaListAdapter(@NonNull DiffUtil.ItemCallback<Fruta>diffCallback){
+    public FrutaListAdapter(@NonNull DiffUtil.ItemCallback<FrutaDto>diffCallback){
         super(diffCallback);
     }
 
@@ -28,7 +29,7 @@ public class FrutaListAdapter extends ListAdapter<Fruta, FrutaViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FrutaViewHolder holder, int position) {
-        Fruta frutaActual = getItem(position);
+        FrutaDto frutaActual = getItem(position);
         holder.bind(frutaActual.getNombre(), frutaActual.getDescripcion());
 
         ImageButton deleteButton = holder.itemView.findViewById(R.id.imageButtonDelete);
@@ -48,21 +49,21 @@ public class FrutaListAdapter extends ListAdapter<Fruta, FrutaViewHolder> {
         });
     }
 
-    static class frutaDiff extends DiffUtil.ItemCallback<Fruta>{
+    static class frutaDiff extends DiffUtil.ItemCallback<FrutaDto>{
         @Override
-        public boolean areItemsTheSame(@NonNull Fruta oldItem, @NonNull Fruta newItem) {
+        public boolean areItemsTheSame(@NonNull FrutaDto oldItem, @NonNull FrutaDto newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Fruta oldItem, @NonNull Fruta newItem) {
+        public boolean areContentsTheSame(@NonNull FrutaDto oldItem, @NonNull FrutaDto newItem) {
             return oldItem.getNombre().equals(newItem.getNombre()) &&  oldItem.getDescripcion().equals(newItem.getDescripcion());
         }
     }
 
     public interface OnItemClickListener {
-        void onItemDelete(Fruta fruta);
-        void onItemClick(Fruta fruta);
+        void onItemDelete(FrutaDto fruta);
+        void onItemClick(FrutaDto fruta);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.infinitid.fruteriarp.domain.FrutaDto;
 import com.infinitid.fruteriarp.entities.Fruta;
 import com.infinitid.fruteriarp.models.FrutaViewModel;
 
@@ -44,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.setOnItemClickListener(new FrutaListAdapter.OnItemClickListener() {
             @Override
-            public void onItemDelete(Fruta fruta) {
+            public void onItemDelete(FrutaDto fruta) {
                 frutaViewModel.delete(fruta);
                 Toast.makeText(getApplicationContext(), R.string.borrado, Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onItemClick(Fruta fruta) {
+            public void onItemClick(FrutaDto fruta) {
                 Intent intent = new Intent(MainActivity.this, AgregarFrutaActivity.class);
                 intent.putExtra(AgregarFrutaActivity.EXTRA_MSG_ID, fruta.getId());
                 intent.putExtra(AgregarFrutaActivity.EXTRA_MSG_NOMBRE, fruta.getNombre());
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == NEW_FRUTA_REQ_CODE && resultCode == RESULT_OK){
-            Fruta fruta = new Fruta();
+            FrutaDto fruta = new FrutaDto();
             fruta.setNombre(data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG_NOMBRE));
             fruta.setDescripcion(data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG_DESCRIPCION));
             frutaViewModel.insert(fruta);
@@ -76,12 +77,11 @@ public class MainActivity extends AppCompatActivity {
             String nombre = data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG_NOMBRE);
             String descripcion = data.getStringExtra(AgregarFrutaActivity.EXTRA_MSG_DESCRIPCION);
 
-            Fruta fruta = new Fruta(id, nombre, descripcion);
+            FrutaDto fruta = new FrutaDto(id, nombre, descripcion);
             frutaViewModel.update(fruta);
         }
         else {
             Toast.makeText(getApplicationContext(), R.string.no_guardado, Toast.LENGTH_LONG).show();
         }
     }
-
 }
