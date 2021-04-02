@@ -1,6 +1,7 @@
 package com.infinitid.fruteriarp.repositories;
 
 import android.app.Application;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,8 +25,10 @@ public class FrutaRestRepository {
     private RestApiInterface apiService = RestApiClient.getClient().create(RestApiInterface.class);
 
     private MutableLiveData<List<FrutaDto>> frutas = new MutableLiveData<>();
+    private Application application;
 
     public FrutaRestRepository(Application application){
+        this.application = application;
         loadFrutas();
     }
 
@@ -43,6 +46,7 @@ public class FrutaRestRepository {
 
             @Override
             public void onFailure(Call<List<FrutaDto>> call, Throwable t) {
+                Toast.makeText(application.getApplicationContext(), "Error"+t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -60,6 +64,7 @@ public class FrutaRestRepository {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(application.getApplicationContext(), "Error"+t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -73,6 +78,7 @@ public class FrutaRestRepository {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(application.getApplicationContext(), "Error"+t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -86,6 +92,7 @@ public class FrutaRestRepository {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(application.getApplicationContext(), "Error"+t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
